@@ -1,3 +1,4 @@
+%define oname evolution-data-server
 %define nspr_major 4
 %define nss_major 3
 
@@ -8,14 +9,14 @@
 %define api_version 1.2
 %define base_version 2.32
 %define lib_major 6
-%define lib_name %mklibname %{name} %{lib_major}
+%define lib_name %mklibname %{oname} %{lib_major}
 %define firefox_version 1.0.1
 
 %define oldmajor 6
-%define oldlibname %mklibname %name %oldmajor
+%define oldlibname %mklibname %oname %oldmajor
 
 %define oldmajor2006 4
-%define oldlibname2006 %mklibname %name %oldmajor2006
+%define oldlibname2006 %mklibname %oname %oldmajor2006
 
 %define camelmajor 19
 %define camel_libname %mklibname camel %camelmajor
@@ -34,7 +35,7 @@
 
 %define edataservermajor 14
 %define edataserver_libname %mklibname edataserver %edataservermajor
-%define edataserver_libnamedev %mklibname -d edataserver
+%define edataserver_libnamedev %mklibname -d edataserver2
 
 %define edataserveruimajor 11
 %define edataserverui_libname %mklibname edataserverui %edataserveruimajor
@@ -45,13 +46,15 @@
 %define ebackendmajor 0
 %define ebackend_libname %mklibname ebackend %ebackendmajor
 
-Name:		evolution-data-server
+Name:		evolution-data-server2
 Summary:	Evolution Data Server
 Version: %version
-Release: %mkrel 3
+Release: %mkrel 4
 License: 	LGPLv2+
 Group:		System/Libraries
-Source0: 	ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
+Source0: 	ftp://ftp.gnome.org/pub/GNOME/sources/%{oname}/%{oname}-%{version}.tar.bz2
+Patch0:		evolution-data-server-2.32.3-deprecated.patch
+Patch1:		evolution-data-server-2.32.3-fix-linking.patch
 URL: 		http://www.gnome.org/projects/evolution/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 
@@ -59,12 +62,12 @@ BuildRequires: bison flex
 BuildRequires: gperf
 BuildRequires: gtk-doc docbook-dtd412-xml
 BuildRequires: krb5-devel
-BuildRequires: libgweather-devel >= 2.25.4
+BuildRequires: libgweather2-devel >= 2.25.4
 BuildRequires: libsoup-devel >= %{libsoup_version_required}
 BuildRequires: nss-devel >= %{firefox_version}
 BuildRequires: nspr-devel >= %{firefox_version}
 BuildRequires: gtk+2-devel >= 2.20.0
-BuildRequires: libgdata-devel >= 0.6.3
+BuildRequires: libgdata0.6-devel >= 0.6.3
 BuildRequires: openldap-devel 
 BuildRequires: sqlite3-devel >= 3.5
 BuildRequires: libical-devel
@@ -186,7 +189,7 @@ Provides: libedataserver-devel = %version-%release
 Requires: nss-devel >= %{firefox_version}
 Requires: nspr-devel >= %{firefox_version}
 #gw libtool dep:
-Requires: libgdata-devel
+Requires: libgdata0.6-devel
 Obsoletes: %mklibname -d edataserver 9
 
 %description -n %{edataserver_libnamedev}
@@ -194,7 +197,9 @@ Evolution Data Server provides a central location for your addressbook
 and calendar in the gnome desktop.
 
 %prep
-%setup -q
+%setup -q -n %oname-%version
+%apply_patches
+autoreconf -fi
 
 %build
 
@@ -210,28 +215,26 @@ and calendar in the gnome desktop.
 %makeinstall_std
 
 
-%{find_lang} %{name}-%{base_version}
+%{find_lang} %{oname}-%{base_version}
 
-%if "%{_lib}" == "lib64"
-perl -pi -e "s|-L/usr/lib\b|-L%{_libdir}|g" %{buildroot}%{_libdir}/*.la
-%endif
+rm -f %{buildroot}%{_libdir}/*.la
 
 %clean
 [ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != / ] && rm -rf $RPM_BUILD_ROOT
 
 
-%files -f %{name}-%{base_version}.lang
+%files -f %{oname}-%{base_version}.lang
 %defattr(-, root, root)
 %doc COPYING NEWS
-%{_libexecdir}/%{name}-%{api_version}
+%{_libexecdir}/%{oname}-%{api_version}
 %{_libexecdir}/camel-index-control-%{api_version}
 %_libexecdir/e-addressbook-factory
 %_libexecdir/e-calendar-factory
 %attr(2755,root,mail) %{_libexecdir}/camel-lock-helper-%{api_version}
-%{_datadir}/%{name}-%{base_version}
+%{_datadir}/%{oname}-%{base_version}
 %_datadir/dbus-1/services/org.gnome.evolution.dataserver.AddressBook.service
 %_datadir/dbus-1/services/org.gnome.evolution.dataserver.Calendar.service
-%{_datadir}/pixmaps/%{name}
+%{_datadir}/pixmaps/%{oname}
 
 %files -n %{camel_libname}
 %defattr(-, root, root)
@@ -273,7 +276,6 @@ perl -pi -e "s|-L/usr/lib\b|-L%{_libdir}|g" %{buildroot}%{_libdir}/*.la
 %files -n %{edataserver_libnamedev}
 %defattr(-, root, root)
 %doc %{_datadir}/gtk-doc/html/*
-%{_includedir}/%{name}-%{base_version}
+%{_includedir}/%{oname}-%{base_version}
 %{_libdir}/pkgconfig/*
 %{_libdir}/*.so
-%attr(644,root,root) %{_libdir}/*.la
