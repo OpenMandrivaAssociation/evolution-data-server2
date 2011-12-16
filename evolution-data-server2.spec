@@ -49,7 +49,7 @@
 Name:		evolution-data-server2
 Summary:	Evolution Data Server
 Version: %version
-Release: %mkrel 4
+Release: %mkrel 5
 License: 	LGPLv2+
 Group:		System/Libraries
 Source0: 	ftp://ftp.gnome.org/pub/GNOME/sources/%{oname}/%{oname}-%{version}.tar.bz2
@@ -76,7 +76,7 @@ BuildRequires: libGConf2-devel GConf2
 BuildRequires: libgnome-keyring-devel
 BuildRequires: intltool
 BuildRequires: db-devel
-
+Conflicts: %oname
 Obsoletes: %oldlibname
 
 
@@ -87,7 +87,6 @@ and calendar in the gnome desktop.
 %package -n %{camel_libname}
 Summary:	Shared libraries for using Evolution Data Server
 Group:		System/Libraries
-Requires:	%{name} >= %{version}-%{release}
 Obsoletes: %oldlibname2006
 
 %description -n %{camel_libname}
@@ -97,7 +96,6 @@ and calendar in the gnome desktop.
 %package -n %{ebook_libname}
 Summary:	Shared libraries for using Evolution Data Server
 Group:		System/Libraries
-Requires:	%{name} >= %{version}-%{release}
 
 %description -n %{ebook_libname}
 Evolution Data Server provides a central location for your addressbook
@@ -106,7 +104,6 @@ and calendar in the gnome desktop.
 %package -n %{ecal_libname}
 Summary:	Shared libraries for using Evolution Data Server
 Group:		System/Libraries
-Requires:	%{name} >= %{version}-%{release}
 
 %description -n %{ecal_libname}
 Evolution Data Server provides a central location for your addressbook
@@ -115,7 +112,6 @@ and calendar in the gnome desktop.
 %package -n %{edatabook_libname}
 Summary:	Shared libraries for using Evolution Data Server
 Group:		System/Libraries
-Requires:	%{name} >= %{version}-%{release}
 Obsoletes: %oldlibname2006
 
 %description -n %{edatabook_libname}
@@ -125,7 +121,6 @@ and calendar in the gnome desktop.
 %package -n %{edatacal_libname}
 Summary:	Shared libraries for using Evolution Data Server
 Group:		System/Libraries
-Requires:	%{name} >= %{version}-%{release}
 Obsoletes: %oldlibname2006
 
 %description -n %{edatacal_libname}
@@ -135,7 +130,6 @@ and calendar in the gnome desktop.
 %package -n %{edataserver_libname}
 Summary:	Shared libraries for using Evolution Data Server
 Group:		System/Libraries
-Requires:	%{name} >= %{version}-%{release}
 Obsoletes: %oldlibname2006
 
 %description -n %{edataserver_libname}
@@ -145,7 +139,6 @@ and calendar in the gnome desktop.
 %package -n %{edataserverui_libname}
 Summary:	Shared libraries for using Evolution Data Server
 Group:		System/Libraries
-Requires:	%{name} >= %{version}-%{release}
 Obsoletes: %{_lib}edataserverui4
 
 %description -n %{edataserverui_libname}
@@ -155,7 +148,6 @@ and calendar in the gnome desktop.
 %package -n %{egroupwise_libname}
 Summary:	Shared libraries for using Evolution Data Server
 Group:		System/Libraries
-Requires:	%{name} >= %{version}-%{release}
 
 %description -n %{egroupwise_libname}
 Evolution Data Server provides a central location for your addressbook
@@ -164,7 +156,6 @@ and calendar in the gnome desktop.
 %package -n %{ebackend_libname}
 Summary:	Shared libraries for using Evolution Data Server
 Group:		System/Libraries
-Requires:	%{name} >= %{version}-%{release}
 
 %description -n %{ebackend_libname}
 Evolution Data Server provides a central location for your addressbook
@@ -173,7 +164,6 @@ and calendar in the gnome desktop.
 %package -n %{edataserver_libnamedev}
 Summary:	Libraries and include files for using Evolution Data Server
 Group:		Development/GNOME and GTK+
-Requires:	%{name} = %{version}
 Requires: %camel_libname = %version
 Requires: %ebook_libname = %version
 Requires: %ecal_libname = %version
