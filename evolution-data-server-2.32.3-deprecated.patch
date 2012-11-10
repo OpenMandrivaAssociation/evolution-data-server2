@@ -1,0 +1,23 @@
+--- evolution-data-server-2.32.3/configure.ac.deprecated	2011-12-15 11:48:19.698526134 +0100
++++ evolution-data-server-2.32.3/configure.ac	2011-12-15 11:49:13.038526490 +0100
+@@ -164,11 +164,7 @@ dnl ******************************
+ dnl Compiler Warning Flags
+ dnl ******************************
+ AS_COMPILER_FLAGS(WARNING_FLAGS,
+-	"-DG_DISABLE_DEPRECATED
+-	-DPANGO_DISABLE_DEPRECATED
+-	-DGDK_PIXBUF_DISABLE_DEPRECATED
+-	-DGTK_DISABLE_DEPRECATED
+-	-DG_DISABLE_SINGLE_INCLUDES
++	"-DG_DISABLE_SINGLE_INCLUDES
+ 	-DGTK_DISABLE_SINGLE_INCLUDES
+ 	-DGSEAL_ENABLE
+ 	-Wall -Wextra
+@@ -176,7 +172,6 @@ AS_COMPILER_FLAGS(WARNING_FLAGS,
+ 	-Wno-sign-compare
+ 	-Wno-unused-parameter
+ 	-Wdeclaration-after-statement
+-	-Werror-implicit-function-declaration
+ 	-Wformat-security -Winit-self
+ 	-Wmissing-declarations -Wmissing-include-dirs
+ 	-Wmissing-noreturn -Wnested-externs -Wpointer-arith

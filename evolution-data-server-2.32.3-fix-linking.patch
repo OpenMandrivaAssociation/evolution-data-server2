@@ -1,0 +1,55 @@
+--- evolution-data-server-2.32.3/calendar/backends/file/Makefile.am.linking	2011-12-15 12:04:44.201026759 +0100
++++ evolution-data-server-2.32.3/calendar/backends/file/Makefile.am	2011-12-15 12:05:17.488525450 +0100
+@@ -40,7 +40,7 @@ test_interval_searches_LDADD = \
+ 	$(top_builddir)/calendar/libecal/libecal-1.2.la				\
+ 	$(top_builddir)/calendar/libedata-cal/libedata-cal-1.2.la		\
+ 	$(top_builddir)/libedataserver/libedataserver-1.2.la			\
+-	$(EVOLUTION_CALENDAR_LIBS)
++	$(EVOLUTION_CALENDAR_LIBS) -lgthread-2.0
+ 
+ test_interval_searches_CPPFLAGS = \
+ 	$(AM_CPPFLAGS)			\
+--- evolution-data-server-2.32.3/camel/Makefile.am.linking	2011-12-15 12:00:11.478596765 +0100
++++ evolution-data-server-2.32.3/camel/Makefile.am	2011-12-15 12:00:13.399775603 +0100
+@@ -351,7 +351,7 @@ camel_index_control_1_2_SOURCES = \
+ 
+ camel_index_control_1_2_LDADD = \
+ 	libcamel-1.2.la				\
+-	$(libcamel_1_2_la_LIBADD)
++	$(libcamel_1_2_la_LIBADD) -lgthread-2.0
+ 
+ camel-mime-tables.c: $(srcdir)/gentables.pl
+ 	perl $(srcdir)/gentables.pl > $@
+--- evolution-data-server-2.32.3/camel/providers/imapx/Makefile.am.linking	2011-12-15 12:36:23.658523412 +0100
++++ evolution-data-server-2.32.3/camel/providers/imapx/Makefile.am	2011-12-15 12:36:45.908525062 +0100
+@@ -56,7 +56,7 @@ test_imapx_SOURCES = test-imapx.c
+ test_imapx_LDADD =							\
+ 	$(CAMEL_LIBS)							\
+ 	$(top_builddir)/camel/libcamel-1.2.la				\
+-	$(top_builddir)/camel/libcamel-provider-1.2.la
++	$(top_builddir)/camel/libcamel-provider-1.2.la -lgthread-2.0
+ 
+ BUILT_SOURCES = camel-imapx-tokenise.h
+ CLEANFILES = $(BUILT_SOURCES)
+--- evolution-data-server-2.32.3/libedataserverui/Makefile.am.linking	2011-12-15 12:08:22.338525397 +0100
++++ evolution-data-server-2.32.3/libedataserverui/Makefile.am	2011-12-15 12:08:57.338525393 +0100
+@@ -130,7 +130,7 @@ test_contact_store_LDADD = $(TEST_EDATAS
+ 
+ test_name_selector_CPPFLAGS = $(TEST_EDATASERVERUI_CPPFLAGS)
+ test_name_selector_SOURCES = test-name-selector.c
+-test_name_selector_LDADD = $(TEST_EDATASERVERUI_LDFLAGS)
++test_name_selector_LDADD = $(TEST_EDATASERVERUI_LDFLAGS) -lgthread-2.0
+ 
+ %-$(LIBEDATASERVERUI_API_VERSION).pc: %.pc
+ 	 cp $< $@
+--- evolution-data-server-2.32.3/servers/groupwise/Makefile.am.linking	2011-12-15 11:54:23.401025610 +0100
++++ evolution-data-server-2.32.3/servers/groupwise/Makefile.am	2011-12-15 11:54:25.340682743 +0100
+@@ -20,7 +20,7 @@ soap_test_LDADD = 						\
+ 	$(top_builddir)/libedataserver/libedataserver-1.2.la	\
+ 	$(SOUP_LIBS)						\
+ 	libegroupwise-1.2.la					\
+-	$(E_DATA_SERVER_LIBS)
++	$(E_DATA_SERVER_LIBS) -lgthread-2.0
+ 
+ build-timestamp.h : $(top_builddir)/config.h
+ 	echo "const char *build_timestamp = \"Evolution-Data-Server-@BASE_VERSION@-`date +%F`\";" > $@
