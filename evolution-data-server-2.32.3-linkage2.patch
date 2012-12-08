@@ -1,0 +1,54 @@
+diff -urN evolution-data-server-2.32.3/configure.ac evolution-data-server-2.32.3-patched/configure.ac
+--- evolution-data-server-2.32.3/configure.ac	2011-04-22 06:35:37.000000000 +1100
++++ evolution-data-server-2.32.3-patched/configure.ac	2012-08-11 00:48:48.828556405 +1100
+@@ -319,6 +319,7 @@
+ dnl ***********************************
+ PKG_CHECK_MODULES(GNOME_PLATFORM,
+ 	[gio-2.0 >= glib_minimum_version
++	gmodule-2.0 >= glib_minimum_version
+ 	$GTK_MODULE
+ 	gconf-2.0 >= gconf_minimum_version
+ 	libxml-2.0 >= libxml_minimum_version
+@@ -1196,7 +1197,7 @@
+ dnl ******************************
+ dnl libedataserver flags
+ dnl ******************************
+-E_DATA_SERVER_DEPS="gio-2.0 libxml-2.0 libsoup-2.4 gconf-2.0 $mozilla_nspr"
++E_DATA_SERVER_DEPS="gio-2.0 gmodule-2.0 libxml-2.0 libsoup-2.4 gconf-2.0 $mozilla_nspr"
+ 
+ EVO_SET_COMPILE_FLAGS(E_DATA_SERVER, $E_DATA_SERVER_DEPS, $MANUAL_NSPR_CFLAGS, $MANUAL_NSPR_LIBS)
+ AC_SUBST(E_DATA_SERVER_CFLAGS)
+@@ -1205,13 +1206,13 @@
+ dnl ******************************
+ dnl libedataserverui
+ dnl ******************************
+-E_DATA_SERVER_UI_DEPS="gio-2.0 $GTK_PACKAGE libxml-2.0 gconf-2.0 $GNOME_KEYRING_REQUIREMENT"
++E_DATA_SERVER_UI_DEPS="gio-2.0 gmodule-2.0 $GTK_PACKAGE libxml-2.0 gconf-2.0 $GNOME_KEYRING_REQUIREMENT"
+ 
+ EVO_SET_COMPILE_FLAGS(E_DATA_SERVER_UI, $E_DATA_SERVER_UI_DEPS, , )
+ AC_SUBST(E_DATA_SERVER_UI_CFLAGS)
+ AC_SUBST(E_DATA_SERVER_UI_LIBS)
+ 
+-E_BACKEND_DEPS="gio-2.0 libxml-2.0 gconf-2.0"
++E_BACKEND_DEPS="gio-2.0 gmodule-2.0 libxml-2.0 gconf-2.0"
+ 
+ dnl ******************************
+ dnl libebackend flags
+@@ -1223,7 +1224,7 @@
+ dnl ******************************
+ dnl evolution-addressbook flags
+ dnl ******************************
+-EVOLUTION_ADDRESSBOOK_DEPS="gio-2.0 libxml-2.0 gconf-2.0"
++EVOLUTION_ADDRESSBOOK_DEPS="gio-2.0 gmodule-2.0 libxml-2.0 gconf-2.0"
+ 
+ EVO_SET_COMPILE_FLAGS(EVOLUTION_ADDRESSBOOK, $EVOLUTION_ADDRESSBOOK_DEPS)
+ AC_SUBST(EVOLUTION_ADDRESSBOOK_CFLAGS)
+@@ -1233,7 +1234,7 @@
+ dnl evolution-calendar flags
+ dnl ******************************
+ if test "x${enable_calendar}" = "xyes"; then
+-	EVOLUTION_CALENDAR_DEPS="gio-2.0 libical >= libical_minimum_version libxml-2.0 gconf-2.0"
++	EVOLUTION_CALENDAR_DEPS="gio-2.0 gmodule-2.0 libical >= libical_minimum_version libxml-2.0 gconf-2.0"
+ 
+ dnl *****
+ dnl libical.pc from libical-0.43 has a bug in it's CFlags.

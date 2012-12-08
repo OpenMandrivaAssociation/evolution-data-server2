@@ -1,0 +1,20 @@
+diff -urN evolution-data-server-2.32.3/configure.ac evolution-data-server-2.32.3-patched/configure.ac
+--- evolution-data-server-2.32.3/configure.ac	2011-04-22 06:35:37.000000000 +1100
++++ evolution-data-server-2.32.3-patched/configure.ac	2012-08-11 00:31:29.000000000 +1100
+@@ -20,7 +20,7 @@
+ dnl Autoconf / Automake Initialization
+ AC_PREREQ(2.58)
+ AC_INIT([evolution-data-server],[eds_version],[http://bugzilla.gnome.org/enter_bug.cgi?product=Evolution-Data-Server])
+-AM_INIT_AUTOMAKE([gnu 1.10 tar-ustar -Wall -Werror foreign])
++AM_INIT_AUTOMAKE([gnu 1.10 tar-ustar -Wall])
+ AC_CONFIG_MACRO_DIR([m4])
+ AC_CONFIG_SRCDIR(README)
+ AC_CONFIG_HEADERS(config.h)
+@@ -208,6 +208,7 @@
+ 
+ AC_PROG_CC
+ AC_PROG_CPP
++AM_PROG_AR
+ AC_C_INLINE
+ AM_PROG_CC_C_O
+ AC_PROG_INSTALL
