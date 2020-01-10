@@ -189,7 +189,7 @@ and calendar in the gnome desktop.
 
 %prep
 %setup -q -n %{oname}-%{version}
-%apply_patches
+%autopatch -p1
 autoreconf -fi
 
 %build
