@@ -54,7 +54,7 @@ Patch0:		evolution-data-server-2.32.3-deprecated.patch
 Patch1:		evolution-data-server-2.32.3-fix-linking.patch
 Patch2:		evolution-data-server-2.32.3-automake1.12.patch
 Patch3:		evolution-data-server-2.32.3-linkage2.patch
-URL:		http://www.gnome.org/projects/evolution/
+URL:		https://www.gnome.org/projects/evolution/
 
 BuildRequires:	bison
 BuildRequires:	flex
