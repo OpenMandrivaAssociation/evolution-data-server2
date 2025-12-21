@@ -56,6 +56,11 @@ Patch2:		evolution-data-server-2.32.3-automake1.12.patch
 Patch3:		evolution-data-server-2.32.3-linkage2.patch
 URL:		https://www.gnome.org/projects/evolution/
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gperf
